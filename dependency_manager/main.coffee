@@ -2,6 +2,7 @@ readline = require 'readline'
 
 debug = true
 dependencies = {}
+installed = {}
 
 depend = (args) ->
   if args.length > 1
@@ -13,13 +14,29 @@ depend = (args) ->
     console.log 'ERROR: DEPEND command takes at least 2 arguments'
 
 install = (args) ->
-  console.log 'command INSTALL'
+  if args.length is 1
+    install_candidate = args[0]
+    install_dependencies = dependencies[install_candidate]
+
+    if install_dependencies
+      for install_dependency in install_dependencies
+        console.log '  Installing ' + install_dependency
+        installed[install_dependency] = true
+
+    console.log '  Installing ' + install_candidate
+    installed[install_candidate] = true
+  else  
+    console.log 'ERROR: INSTALL command takes only 1 argument at a time'
 
 remove = (args) ->
   console.log 'command REMOVE'
 
 list = (args) ->
-  console.log 'command LIST'
+  if args.length is 0
+    for install of installed
+      console.log '  '+install
+  else
+    console.log 'ERROR: LIST command takes no arguments'
 
 end = (args) ->
   process.exit()
