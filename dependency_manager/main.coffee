@@ -1,19 +1,28 @@
 readline = require 'readline'
 
-depend = ->
-  console.log 'command DEPEND'
+debug = true
+dependencies = {}
 
-install = ->
+depend = (args) ->
+  if args.length > 1
+    dependant = args.shift()
+    dependencies[dependant] = args
+    if debug
+      console.log dependencies
+  else
+    console.log 'ERROR: DEPEND command takes at least 2 arguments'
+
+install = (args) ->
   console.log 'command INSTALL'
 
-remove = ->
+remove = (args) ->
   console.log 'command REMOVE'
 
-list = ->
+list = (args) ->
   console.log 'command LIST'
 
-end = ->
-  console.log 'command END'
+end = (args) ->
+  process.exit()
 
 # COMMAND --> action
 commands =
@@ -28,5 +37,11 @@ rl = readline.createInterface
   output: process.stdout
 
 rl.on 'line', (line) ->
+  console.log line
   tokens = line.trim().split(/\s+/)
-  console.log tokens
+  command = tokens.shift()
+  args = tokens
+  if commands[command]
+    commands[command](args)
+  else
+    console.log "ERROR: Command not recognized"
