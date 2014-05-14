@@ -22,6 +22,11 @@ Available Commands:
 4. LIST
 ```
 
+Gotchas:
+```
+1. Google Docs processes the word doc with a 3 space indent, assuming this is correct
+```
+
 All commands echo themselves when entered, only INSTALL/REMOVE/LIST have other output.
 
 Note all input/output done via stdin/stdout
