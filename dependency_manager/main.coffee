@@ -3,6 +3,7 @@ readline = require 'readline'
 debug = false
 dependencies = {}
 installed = {}
+indent = '   '
 
 depend = (args) ->
   if args.length > 1
@@ -20,10 +21,10 @@ install = (args) ->
 
     if install_dependencies
       for install_dependency in install_dependencies
-        console.log '  Installing ' + install_dependency
+        console.log indent + 'Installing ' + install_dependency
         installed[install_dependency] = true
 
-    console.log '  Installing ' + install_candidate
+    console.log indent + 'Installing ' + install_candidate
     installed[install_candidate] = true
   else  
     console.log 'ERROR: INSTALL command takes only 1 argument at a time'
@@ -34,7 +35,7 @@ remove = (args) ->
 list = (args) ->
   if args.length is 0
     for install of installed
-      console.log '  '+install
+      console.log indent + install
   else
     console.log 'ERROR: LIST command takes no arguments'
 
