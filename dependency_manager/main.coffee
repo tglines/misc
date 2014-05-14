@@ -21,8 +21,9 @@ install = (args) ->
 
     if install_dependencies
       for install_dependency in install_dependencies
-        console.log indent + 'Installing ' + install_dependency
-        installed[install_dependency] = true
+        if !installed[install_dependency]
+          console.log indent + 'Installing ' + install_dependency
+          installed[install_dependency] = true
 
     console.log indent + 'Installing ' + install_candidate
     installed[install_candidate] = true
