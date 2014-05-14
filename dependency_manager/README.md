@@ -4,6 +4,7 @@ Sample dependency manager
 To Run:
 ```
 coffee main.coffee < input.txt > out.txt    ... for stdin/stdout io redirection style
+./run.sh                                    ... shortcut to run the above
 coffee main.coffee                          ... for interactive mode
 ```
 
