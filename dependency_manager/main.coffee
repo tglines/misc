@@ -37,6 +37,18 @@ install = (args) ->
   else
     console.log 'ERROR: INSTALL command takes only 1 argument at a time'
 
+remove_dependencies = (parent) ->
+  parents_dependencies = dependencies[parent]
+  if parents_dependencies?
+    for dep in parents_dependencies
+      install_entry = installed[dep]
+      if install_entry? and install_entry.length is 1 and install_entry[0] is parent
+        delete installed[dep]
+        console.log indent + ' Removing ' + dep
+        remove_dependencies(dep)
+      
+    
+
 remove = (args) ->
   if args.length is 1
     remove_candidate = args[0]
@@ -44,6 +56,7 @@ remove = (args) ->
       if installed[remove_candidate].length is 0
         delete installed[remove_candidate]
         console.log indent + ' Removing ' + remove_candidate
+        remove_dependencies(remove_candidate)
       else
         # Could say needed by what here, but to stay consistent I wont add it
         console.log indent + remove_candidate + ' is still needed.'
