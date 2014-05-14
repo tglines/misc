@@ -47,8 +47,6 @@ remove_dependencies = (parent) ->
         console.log indent + ' Removing ' + dep
         remove_dependencies(dep)
       
-    
-
 remove = (args) ->
   if args.length is 1
     remove_candidate = args[0]
