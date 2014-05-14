@@ -1,10 +1,17 @@
 Sample dependency manager
 -------------------------
 
+To Run:
+```
+coffee main.coffee < input.txt > out.txt    ... for stdin/stdout io redirection style
+coffee main.coffee                          ... for interactive mode
+```
 
 Steps:
 ```
 1. Install/compile latest node.js + coffeescript
+2. Implement command processing in a nice way with sanity checks
+3. Implement each commands behavior
 ```
 
 Available Commands:
@@ -18,3 +25,5 @@ Available Commands:
 All commands echo themselves when entered, only INSTALL/REMOVE/LIST have other output.
 
 Note all input/output done via stdin/stdout
+
+

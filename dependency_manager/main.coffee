@@ -1,6 +1,6 @@
 readline = require 'readline'
 
-debug = true
+debug = false
 dependencies = {}
 installed = {}
 
