@@ -16,3 +16,5 @@ Available Commands:
 ```
 
 All commands echo themselves when entered, only INSTALL/REMOVE/LIST have other output.
+
+Note all input/output done via stdin/stdout
